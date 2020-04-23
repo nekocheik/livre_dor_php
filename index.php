@@ -1,9 +1,12 @@
 <?php
-// $_POST 
+// 
 $pageName = "Livre d'or";
 require('./layouts/header.php');
 require('./class/Form.php');
 require('./class/Message.php');
+
+// HtmlElement::log($_POST);
+// HtmlElement::log($_POST);
 
 ?>
 <div class="container">
@@ -13,8 +16,16 @@ require('./class/Message.php');
       Form::field('Username');
       Form::field('Message','textarea');
       Form::button('Message','submit');
-      Message::getMessage('Message');
       ?>
     </div>
   </form>
+</div>
+
+<div class="container pt-3">
+  <div class="col-sm">
+    <h3>Messages :</h3>
+    <?php
+    Message::getMessage($_POST['username'], $_POST['message']);
+    ?>
+  </div>
 </div>

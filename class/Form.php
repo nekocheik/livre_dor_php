@@ -1,6 +1,5 @@
 <?php
 require './class/HtmlElement.php';
-// var_dump(HtmlElement::createElement('div', ['classe' => 'cheik']));
 class Form extends HtmlElement {
   
   private function textarea ($name = '', $type = 'text') {
