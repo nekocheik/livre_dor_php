@@ -1,10 +1,11 @@
 <?php
+$_POST = 
 $pageName = "Livre d'or";
 require('./layouts/header.php');
 require('./class/Form.php');
 ?>
 <div class="container">
-  <form>
+  <form method="post">
     <div class="col-sm">
       <?php
       Form::field('Username');
