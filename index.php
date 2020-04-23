@@ -1,8 +1,10 @@
 <?php
-$_POST = 
+// $_POST 
 $pageName = "Livre d'or";
 require('./layouts/header.php');
 require('./class/Form.php');
+require('./class/Message.php');
+
 ?>
 <div class="container">
   <form method="post">
@@ -11,6 +13,7 @@ require('./class/Form.php');
       Form::field('Username');
       Form::field('Message','textarea');
       Form::button('Message','submit');
+      Message::getMessage('Message');
       ?>
     </div>
   </form>
