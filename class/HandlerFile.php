@@ -8,28 +8,58 @@ class HandlerFile {
      return dirname(__DIR__) . DIRECTORY_SEPARATOR . $path;
   }
 
-  static function action ( $parms, $callback) {
-    self::open($parms);
-    $callback('naruto');
-    self::close();
+  public function action ( $parms, $callback) {
+    $resource = $this->open($parms); 
+    //$this->resource = $resource;
+    $result = $callback($resource);
+    $this->close($resource);
+    return $result;
   }
 
-  public function open ($parms = "r") { 
-    var_dump($this->path);
-    fopen($this->path, 'r' );
+
+  function readLines ($resource) {
+
   }
 
-  static function close ($pathFile) { 
-    fclose($pathFile ? $pathFile : self::path);
+  public function open ($parms = 'r') { 
+    return fopen($this->path, $parms);
   }
 
-  function toString () {
+  public function close ($resource = null) { 
+    fclose($this->resource ? $this->resource: $resource);
+  }
 
+  public function toString ($parms) {
+    $resource = $this->open($parms);
+    $result = self::getToString($resource);
+    $this->close($resource);
+    return $result;
   } 
 
-  function toArray () {
+  public function toArray ($parms) {
+    $resource = $this->open($parms);
+    $result = self::getToArray($resource);
+    $this->close($resource);
+    return $result;
+  } 
 
+
+  static function getToString ($resource) {
+    $string = '';
+    while ($line = fgets($resource)) {
+      $string .= $line;
+    };
+    return $string;
   }
+
+  static function getToArray ($resource) {
+    $array = [];
+    while ($line = fgets($resource)) {
+      $array[] = $line;
+    };
+    return $array;
+  }
+
 }
 
 ?>

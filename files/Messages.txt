@@ -1,1 +1,6 @@
-fasdfsadfasf 
+{"message":"kone","username":"cheik"}
+{"message":"dasfadsf","username":"fdasfasf"}
+{"message":"fdasfsaa","username":"fasddfasfa"}
+{"message":"&lt;button&gt;\r\n","username":""}
+{"message":"&lt;button&gt;\r\n","username":""}
+{"message":"&lt;button&gt;\r\n","username":""}
