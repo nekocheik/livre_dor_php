@@ -4,7 +4,10 @@ $pageName = "Livre d'or";
 require('./layouts/header.php');
 require('./class/Form.php');
 require('./class/Message.php');
+require('./class/HandlerFile.php');
 
+$fileSaveMessages = new HandlerFile('files/Messages.txt');
+$fileSaveMessages->open('open', 'r');
 // HtmlElement::log($_POST);
 // HtmlElement::log($_POST);
 
