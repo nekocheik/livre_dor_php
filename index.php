@@ -29,9 +29,11 @@ if ($_POST && isset($_POST['message']) && isset($_POST['username'])) {
   <form method="post">
     <div class="col-sm">
       <?php
-      Form::field('Username');
-      Form::field('Message','textarea');
-      Form::button('Message','submit');
+      $form = new Form();
+      $form->addfield('Username');
+      $form->addfield('Message','textarea');
+      $form->addButton('Message','submit');
+      echo $form->close();
       ?>
     </div>
   </form>
@@ -41,7 +43,7 @@ if ($_POST && isset($_POST['message']) && isset($_POST['username'])) {
   <div class="col-sm">
     <h3>Messages :</h3>
     <?php
-    Message::getMessages($messagesSave);
+    echo Message::getMessages($messagesSave);
     Message::getMessage($_POST['username'], $_POST['message']);
     ?>
   </div>

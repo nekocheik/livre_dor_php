@@ -12,8 +12,8 @@ class Message extends HtmlElement {
 
   private function createMesage ($childsContent) {
     return [
-      self::createChildElement('p', [ 'class' => 'h4 pt-3' ], $childsContent['Username']),
-      self::createChildElement('p', [ 'class' => 'py-3' ], $childsContent['Message']),
+      self::createElement('p', [ 'class' => 'h4 pt-3' ], $childsContent['Username']),
+      self::createElement('p', [ 'class' => 'py-3' ], $childsContent['Message']),
     ];
   }
 
@@ -22,6 +22,6 @@ class Message extends HtmlElement {
     foreach ($messages as $message) {
       $messagesToString .= self::getMessage( $message['username'], $message['message'] );
     }
-    return messagesToString;
+    return $messagesToString;
   }
 }
