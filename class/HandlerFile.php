@@ -10,7 +10,6 @@ class HandlerFile {
 
   public function action ( $parms, $callback) {
     $resource = $this->open($parms); 
-    //$this->resource = $resource;
     $result = $callback($resource);
     $this->close($resource);
     return $result;
@@ -26,7 +25,7 @@ class HandlerFile {
   }
 
   public function close ($resource = null) { 
-    fclose($this->resource ? $this->resource: $resource);
+    fclose(isset($this->resource)? $this->resource: $resource);
   }
 
   public function toString ($parms) {

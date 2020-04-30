@@ -41,7 +41,7 @@ class Form extends HtmlElement {
   }
 
   static function setButton ($text = '', $action = 'submit') {
-    $parmsButton = ['class' => 'btn btn-primary mb-2' , 'action' => action];
+    $parmsButton = ['class' => 'btn btn-primary mb-2' , 'action' => $action];
     return self::createElement('button', $parmsButton , $text);
   }
 

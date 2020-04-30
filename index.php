@@ -1,4 +1,6 @@
 <?php
+
+require('./app/config.php');
 // 
 $pageName = "Livre d'or";
 require('./layouts/header.php');
@@ -11,21 +13,30 @@ $fileSaveMessages = new HandlerFile($filePath);
 $messagesTojson = $fileSaveMessages->toArray('r');
 $messagesSave = [];
 
-foreach ($messagesTojson as $message) {
-  $messagesSave[] = json_decode($message, true);
-};
-
+$messageSuccess = false;
 if ($_POST && isset($_POST['message']) && isset($_POST['username'])) {
   $message = htmlentities($_POST['message']);
   $username = htmlentities($_POST['username']);
-  file_put_contents($filePath, json_encode(
-    ['message' => $message, 'username' => $username]
-   ). PHP_EOL , FILE_APPEND);
+  $query = $pdo->prepare('insert posts SET username = :username, post = :message');
+  $query->execute([
+    'username'=> $username,
+    'message' => $message
+  ]);
+  $messageSuccess = true;
 }
+
+
+// $messagesSave[] = 
+$query = $pdo->prepare('SELECT * FROM posts',[PDO::FETCH_ASSOC]);
+$query->execute();
+$messagesSave = $query->fetchAll();
 
 
 ?>
 <div class="container">
+  <?php if ($messageSuccess) : ?>
+  <div class="success alert-success p-2 m-2"> Votre post a était ajouté </div> 
+  <?php endif ?>
   <form method="post">
     <div class="col-sm">
       <?php
@@ -44,7 +55,6 @@ if ($_POST && isset($_POST['message']) && isset($_POST['username'])) {
     <h3>Messages :</h3>
     <?php
     echo Message::getMessages($messagesSave);
-    Message::getMessage($_POST['username'], $_POST['message']);
     ?>
   </div>
 </div>
